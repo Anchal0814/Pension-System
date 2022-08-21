@@ -42,7 +42,8 @@ namespace APIPension
              });
             });
 
-            services.AddDbContext<PensionerContext>(x => x.UseSqlServer(Configuration.GetConnectionString("ConStr")));
+            //services.AddDbContext<PensionerContext>(x => x.UseSqlServer(Configuration.GetConnectionString("ConStr")));
+            services.AddDbContext<PensionerContext>(options => options.UseSqlServer("Server=tcp:test-pensionerdb.database.windows.net,1433;Initial Catalog=PensionerPortalDb;Persist Security Info=False;User ID=hiadmin;Password=@qwerty1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30; "));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(x =>
             {
                 x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
